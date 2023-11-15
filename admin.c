@@ -19,13 +19,13 @@ struct usuario
 };
 
 // Função para verificar a senha e privilégio de um usuário a partir de um arquivo de senhas
-int verificaSenhaEPrivilegio(const char *senha)
+int verificarSP(const char *senha)
 {
     FILE *arquivo = fopen("usuarios.txt", "r");
 
     if (arquivo == NULL)
     {
-        printf("Erro ao abrir o arquivo de senhas!\n");
+        printf("Error 404!\n");
         return 0;
     }
 
@@ -53,24 +53,24 @@ void AdicaoProduto()
     struct produto prod;
 
     char senha[50];
-    printf("Informe sua senha:");
+    printf("Digite a senha desejada:");
     scanf("%s", senha);
 
     // Verifica se a senha é válida para um usuário administrador
-    if (verificaSenhaEPrivilegio(senha))
+    if (verificarSP(senha))
     {
-        printf("Informe o nome do produto:\n");
+        printf("Digite o nome do produto:\n");
         scanf("%s", prod.Nome);
-        printf("Informe o preco do produto:\n");
+        printf("Digite o preco do produto:\n");
         scanf("%f", &prod.preco);
-        printf("Informe o estoque do produto:\n");
+        printf("Digite o estoque do produto:\n");
         scanf("%d", &prod.quantidade);
 
         arquivo = fopen("estoque.txt", "a");
 
         if (arquivo == NULL)
         {
-            printf("Erro ao abrir o arquivo!\n");
+            printf("Error 404!\n");
             return;
         }
 
@@ -83,7 +83,7 @@ void AdicaoProduto()
     }
     else
     {
-        printf("A senha informada está errada ou não é de um usuário administrador.");
+        printf("Senha inválida.");
     }
     return;
 }
@@ -95,15 +95,15 @@ void AdicionarUsuario()
     struct usuario user;
 
     char senha[50];
-    printf("Informe sua senha:");
+    printf("Digite sua senha:");
     scanf("%s", senha);
-    if (verificaSenhaEPrivilegio(senha))
+    if (verificarSP(senha))
     {
-        printf("Informe o nome do novo usuário:\n");
+        printf("Digite o novo nome de usuário desejada:\n");
         scanf("%s", user.nome);
-        printf("Informe o nível de privilégio:\n");
+        printf("Digite o nível de privilégio:\n");
         scanf("%s", user.nivelPrivilegio);
-        printf("Informe a senha para este usuário (A senha deve conter 8 caracteres):\n");
+        printf("Digite sua senha:\n");
 
         // Loop para garantir que a senha tenha 7 caracteres
         while (strlen(user.senha) != 7)
@@ -119,7 +119,7 @@ void AdicionarUsuario()
 
         if (arquivo == NULL)
         {
-            printf("Erro ao abrir o arquivo!\n");
+            printf("Error 202!\n");
         }
         else
         {
@@ -131,7 +131,7 @@ void AdicionarUsuario()
     }
     else
     {
-        printf("A senha informada está incorreta ou não é de um administrador.\n");
+        printf("Senha inválida.\n");
     }
 }
 
@@ -139,19 +139,19 @@ void AdicionarUsuario()
 void ExcluirUsuario()
 {
     char senha[50];
-    printf("Informe sua senha:");
+    printf("Digite sua senha:");
     scanf("%s", senha);
-    if (verificaSenhaEPrivilegio(senha))
+    if (verificarSP(senha))
     {
         char nome[50];
-        printf("Informe o nome do usuário a ser excluído:\n");
+        printf("Qual usuário sera excluído?:\n");
         scanf("%s", nome);
 
         FILE *arquivo = fopen("usuarios.txt", "r");
 
         if (arquivo == NULL)
         {
-            printf("Erro ao abrir o arquivo de usuários!\n");
+            printf("Error 808!\n");
             return;
         }
 
@@ -159,7 +159,7 @@ void ExcluirUsuario()
 
         if (temp == NULL)
         {
-            printf("Erro ao criar arquivo temporário!\n");
+            printf("Error 121!\n");
             fclose(arquivo);
             return;
         }
@@ -191,12 +191,12 @@ void ExcluirUsuario()
         }
         else
         {
-            printf("Usuário '%s' não encontrado para exclusão.\n", nome);
+            printf("Usuário '%s' não encontrado para retirada.\n", nome);
         }
     }
     else
     {
-        printf("Senha incorreta ou não cadastrada como administrador.");
+        printf("Senha inválida.");
     }
 }
 
@@ -210,14 +210,14 @@ struct prod
 };
 
 // Função para atualizar o estoque, adicionando produtos
-void AtualizarEstoqueAdd(struct prod *p)
+void AtualizaEstoque(struct prod *p)
 {
     FILE *arquivo = fopen("estoque.txt", "r");
     FILE *temporario = fopen("estoque_temp.txt", "w");
 
     if (arquivo == NULL || temporario == NULL)
     {
-        printf("Erro ao abrir os arquivos de estoque para atualização!\n");
+        printf("Erro 909!\n");
         return;
     }
 
@@ -322,7 +322,7 @@ int ExcluirPedido(const char *nomeProduto, int quantidadePedido)
 }
 
 // Função que chama as outras funções e exclui um pedido
-void ExcluirPedidoComunicacao()
+void ExcluirPC()
 {
     struct prod p;
 
@@ -330,7 +330,7 @@ void ExcluirPedidoComunicacao()
     printf("Informe sua senha:");
     scanf("%s", senha);
 
-    if (verificaSenhaEPrivilegio(senha))
+    if (verificarSP(senha))
     {
         printf("Informe o nome do produto:");
         scanf("%s", p.Nome);
@@ -341,7 +341,7 @@ void ExcluirPedidoComunicacao()
 
         if (controle == 0)
         {
-            AtualizarEstoqueAdd(&p);
+            AtualizaEstoque(&p);
         }
         else
         {

@@ -4,17 +4,17 @@
 
 //Funções para os usuários normais.
 
-void FazerPedido();
+void RealizarPedido();
 //realizar pedido
-void ExibirListaProdutos();
+void MostrarListaProdutos();
 //exibir a lista dos produtos
 void AdicaoProduto(); 
 //adicionar algum produto
-void ExibirPedidosUsuarios();
+void MostrarPedidosUsuarios();
 //exibir pedidos do usuario
 void AdicionarUsuario();
 //adc algum usuario
 void ExcluirUsuario();
 //excluir algum usuario
-void ExcluirPedidoComunicacao();
+void ExcluirPC();
 #endif

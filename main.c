@@ -4,7 +4,7 @@
 #include "sgc.h"
 
 void menu() {
-    int usuario;
+    int user1;
 
     while (1) {
         printf("\n=============BEM-VINDO AO SISTEMA COMERCIAL=============\n\n");
@@ -15,23 +15,23 @@ void menu() {
         printf("2-Administrador\n");
         printf("3-Sair do Sistema\n");
 
-        scanf("%d", &usuario);
+        scanf("%d", &user1);
 
-        switch (usuario) {
+        switch (user1) {
             case 1:
-                printf(" 1- Faca o pedido de algum produto.\n 2-  Mostrar a lista de produtos disponíveis no estoque.\n 3- Exibir a lista de pedidos feitos pelos usuários\n");
-                int escolha1;
-                scanf("%d", &escolha1);
+                printf(" 1- Realize o pedido de algum produto.\n 2-  Visualizar a lista de produtos disponíveis no estoque.\n 3- Exibir a lista de pedidos feitos pelos usuários\n");
+                int escolher1;
+                scanf("%d", &escolher1);
 
-                switch (escolha1) {
+                switch (escolher1) {
                     case 1:
-                        FazerPedido();
+                        RealizarPedido();
                         break;
                     case 2:
-                        ExibirListaProdutos();
+                        MostrarListaProdutos();
                         break;
                     case 3:
-                        ExibirPedidosUsuarios();
+                        MostrarPedidosUsuarios();
                         break;
                     default:
                         break;
@@ -41,14 +41,14 @@ void menu() {
 
             case 2:
                 printf(" 1- Adicionar produtos novos ao estoque.\n 2- Exibir a lista de produtos disponíveis no estoque.\n 3- Adicionar novos usuários ao sistema.\n 4- Excluir usuário do sistema.\n 5- Faca pedidos de produtos.\n 6- Cancele o pedido de produtos.\n 7- Exibir lista de pedidos feitas por usuário.\n");
-                int escolha2;
-                scanf("%d", &escolha2);
-                switch (escolha2) {
+                int escolher2;
+                scanf("%d", &escolher2);
+                switch (escolher2) {
                     case 1:
                         AdicaoProduto();
                         break;
                     case 2:
-                        ExibirListaProdutos();
+                        MostrarListaProdutos();
                         break;
                     case 3:
                         AdicionarUsuario();
@@ -57,13 +57,13 @@ void menu() {
                         ExcluirUsuario();
                         break;
                     case 5:
-                        FazerPedido();
+                        RealizarPedido();
                         break;
                     case 6:
-                        ExcluirPedidoComunicacao();
+                        ExcluirPC();
                         break;
                     case 7:
-                        ExibirPedidosUsuarios();
+                        MostrarPedidosUsuarios();
                         break;
                     default:
                         break;

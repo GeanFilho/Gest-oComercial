@@ -5,15 +5,15 @@
 // structs
 struct pedido
 {
-    char PesquisaNome[50];
-    int QuantidadePedido;
+    char PesquisaN[50];
+    int QuantPedido;
 };
 
 struct produto
 {
     char Nome[50];
     float preco;
-    int quantidade;
+    int quant;
 };
 
 struct prod
@@ -32,7 +32,7 @@ void AtualizarEstoque(struct prod *p)
 
     if (arquivo == NULL || temporario == NULL)
     {
-        printf("Erro ao abrir os arquivos de estoque para atualização!\n");
+        printf("Error 404!\n");
         return;
     }
 
@@ -59,7 +59,7 @@ void AtualizarEstoque(struct prod *p)
             }
             else
             {
-                printf("Quantidade insuficiente em estoque!\n");
+                printf("Não temos em estoque :(!\n");
             }
 
             fprintf(temporario, "Nome do Produto: %s, Preço: %.2f, Quantidade Disponível: %d\n", p->Nome, preco, quantidade);
@@ -78,11 +78,11 @@ void AtualizarEstoque(struct prod *p)
 
     if (encontrado)
     {
-        printf("Estoque atualizado com sucesso!\n");
+        printf("Estoque nos trinques!\n");
     }
     else
     {
-        printf("Produto não encontrado no estoque!\n");
+        printf("Não temos esse produto :(!\n");
     }
 }
 
@@ -93,7 +93,7 @@ void SalvarPedido(struct prod *p)
 
     if (pedido == NULL)
     {
-        printf("Erro ao abrir o arquivo de pedidos para atualização!\n");
+        printf("Error 303!\n");
         return;
     }
 
@@ -103,13 +103,13 @@ void SalvarPedido(struct prod *p)
 }
 
 // função que chama as outras funçoes e faz o pedido
-void FazerPedido()
+void RealizarPedido()
 {
     struct prod p;
 
-    printf("Informe o nome do produto:");
+    printf("Digite o nome do produto:");
     scanf("%s", p.Nome);
-    printf("Informe a quantidade desejada:");
+    printf("Digite a quantidade:");
     scanf("%d", &p.QuantidadePedido);
 
     AtualizarEstoque(&p);
@@ -117,7 +117,7 @@ void FazerPedido()
 }
 
 // função que exibir pedidos de todos os usuarios
-void ExibirPedidosUsuarios()
+void MostrarPedidosUsuarios()
 {
     FILE *arquivo;
     struct pedido p;
@@ -132,17 +132,17 @@ void ExibirPedidosUsuarios()
 
     printf("Lista de Pedidos Feitos por Usuarios Comuns:\n");
 
-    while (fscanf(arquivo, "Nome do Produto: %49[^,], Quantidade Pedido: %d\n", p.PesquisaNome, &p.QuantidadePedido) != EOF)
+    while (fscanf(arquivo, "Nome do Produto: %49[^,], Quantidade Pedido: %d\n", p.PesquisaN, &p.QuantPedido) != EOF)
     {
-        printf("Nome do Produto: %s\n", p.PesquisaNome);
-        printf("Quantidade: %d\n\n", p.QuantidadePedido);
+        printf("Nome do Produto: %s\n", p.PesquisaN);
+        printf("Quantidade: %d\n\n", p.QuantPedido);
     }
 
     fclose(arquivo);
 }
 
 // função que exibe a lista de produtos no estoque
-void ExibirListaProdutos()
+void MostrarListaProdutos()
 {
     FILE *arquivo;
     struct produto prod;
@@ -157,11 +157,11 @@ void ExibirListaProdutos()
 
     printf("Lista de Produtos Disponiveis:\n");
 
-    while (fscanf(arquivo, "Nome do Produto: %49[^,], Preço: %f, Quantidade Disponível: %d\n", prod.Nome, &prod.preco, &prod.quantidade) != EOF)
+    while (fscanf(arquivo, "Nome do Produto: %49[^,], Preço: %f, Quantidade Disponível: %d\n", prod.Nome, &prod.preco, &prod.quant) != EOF)
     {
         printf("Nome: %s\n", prod.Nome);
         printf("Preço: %.2f\n", prod.preco);
-        printf("Quantidade Disponível: %d", prod.quantidade);
+        printf("Quantidade Disponível: %d", prod.quant);
     }
 
     fclose(arquivo);
