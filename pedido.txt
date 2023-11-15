@@ -1,0 +1,4 @@
+Nome do Produto: arroz, Quantidade Pedido: 2
+Nome do Produto: nescau, Quantidade Pedido: 12
+Nome do Produto: Coleira, Quantidade Pedido: 3
+Nome do Produto: Coleira, Quantidade Pedido: 5
